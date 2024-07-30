@@ -35,7 +35,7 @@ class RetweetTagsJaccardGraph:
 
         #generateRetweetTagsJaccardGraph
         self.df_rt_grouped, self.u_rt = self.generateRetweetGraph()
-        self.df_ht_grouped, self.u_ht, self.user_hts_mapping = self.generatehashtagsGraph(onlyTagsFromNotRetweetedPosts)
+        self.df_ht_grouped, self.u_ht, self.user_hts_mapping = self.generateHashtagsGraph(onlyTagsFromNotRetweetedPosts)
         v = self.u_rt.union(self.u_ht).distinct()
         e = self.df_rt_grouped.union(self.df_ht_grouped)
         # first it generates the g graph, than it uses motifs to find couples of users having at least two hashtags in common
@@ -71,7 +71,7 @@ class RetweetTagsJaccardGraph:
 
         return df_rt_grouped, u_rt
 
-    def generatehashtagsGraph(self, onlyTagsFromNotRetweetedPosts):
+    def generateHashtagsGraph(self, onlyTagsFromNotRetweetedPosts):
         """
         Generates the graph (creates an edge a->b if "b" is a hashtag used by "b" in some "a" post)
 
